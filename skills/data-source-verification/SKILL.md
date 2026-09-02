@@ -61,7 +61,7 @@ description: >-
 # 範例：解析邏輯直接吃拿到的真實原始回應（節錄），不是憑空造的結構
 REAL_SAMPLE = {
     "stat": "OK",
-    "fields": ["日期", "收盤價", "漲跌"],
+    "fields": ["日期", "數值", "變化量"],
     "data": [
         ["2026/08/19", "44,719.35", "-589.33"],
         # ...更多真實列，照對方貼的原始回應節錄
@@ -70,7 +70,7 @@ REAL_SAMPLE = {
 
 def test_parser_handles_real_sample():
     rows = parse(REAL_SAMPLE)
-    assert rows[-1]["close"] == 44719.35
+    assert rows[-1]["value"] == 44719.35
 ```
 
 測試斷言直接對照真實樣本裡看得到的數字，這樣測試本身也是「用真實資料驗證過」，不會變成自我循環的假驗證。
