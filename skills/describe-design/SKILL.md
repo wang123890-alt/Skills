@@ -11,6 +11,14 @@ description: >
   codebase", or asks for architecture documentation of any kind. If the user
   wants to understand an existing system rather than design a new one, this
   is the right skill.
+  What this produces is documentation for people to read: Mermaid diagrams,
+  a system overview, component summaries, and an onboarding guide. It maps
+  breadth — entry points, domain boundaries, user flows, external integrations,
+  deployment — and does not verify each claim line by line.
+  USE codebase-analysis INSTEAD when the user needs to know exactly how a
+  specific algorithm, data structure, or function works internally and wants
+  every claim cited back to file:line. Breadth for readers here; depth with
+  citations there.
 ---
 
 # Describe Design: Document Existing Systems
