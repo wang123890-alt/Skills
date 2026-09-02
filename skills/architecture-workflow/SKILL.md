@@ -3,7 +3,8 @@ name: architecture-workflow
 description: >
   End-to-end codebase health workflow: discover architecture, review it, fix issues
   with TDD, and document the result. Chains describe-design, architecture review
-  skills, and tdd-ai into a single phased workflow with checkpoint documents.
+  skills, and feature-batch-workflow into a single phased workflow with checkpoint
+  documents.
   Use this skill whenever the user says "audit my codebase", "do a full architecture
   review and fix things", "improve my codebase architecture", "health check this
   project", "review and refactor", "clean up this codebase", or any request that
@@ -26,7 +27,7 @@ the user to review the diagnosis before proceeding to Phases 3-4.
 
 ```
 Phase 1: Discover    →  Phase 2: Diagnose    →  [USER REVIEW]  →  Phase 3: Fix    →  Phase 4: Document
-(describe-design)       (architecture review)                      (tdd-ai)           (describe-design)
+(describe-design)       (architecture review)          (feature-batch-workflow)       (describe-design)
 ```
 
 Each phase produces a checkpoint document saved to the project directory, so there's
@@ -223,7 +224,15 @@ If the user skips or reprioritizes findings:
 **Goal:** Systematically fix the findings from Phase 2, using test-driven development
 to ensure each fix is verified and doesn't break existing behavior.
 
-**Skill:** Use the `tdd-ai` skill's red-green-refactor cycle.
+**Skill:** Use the `feature-batch-workflow` skill's sandbox-batch discipline — isolate
+the logic being fixed into pure functions that touch no network and no database, and
+**hand-compute the expected values before writing the test data**, then check the code
+against those numbers. Running tests only catches "the code disagrees with the test";
+hand-computing first is what catches "the test and the design are wrong together."
+
+Wrap each fix in a red-green-refactor cycle: write the failing test first, make it pass
+with the smallest change, then refactor. The compilation gates and git checkpoints below
+are what make this safe for architecture changes specifically.
 
 ### CRITICAL: Compilation Gates and Git Checkpoints
 
@@ -307,7 +316,7 @@ adjusted by any user priorities. The general principle:
 
 ### For Each Fix
 
-Every fix follows the tdd-ai red-green-refactor cycle with mandatory compilation
+Every fix follows the red-green-refactor cycle with mandatory compilation
 verification. Architecture changes are exactly the kind of refactoring where things
 silently break — a test suite AND a compilation check are the only way to know you
 haven't introduced regressions.
@@ -448,7 +457,7 @@ By the end of the workflow, the project has four documents in `architecture-work
 |----------|----------|-------------|
 | `phase-1-discovery.md` | System overview, diagrams, smells list | describe-design |
 | `phase-2-diagnosis.md` | Health scores, findings table, dependency map | architecture review |
-| `phase-3-fixes.md` | Fix log with tests added, files changed | tdd-ai |
+| `phase-3-fixes.md` | Fix log with tests added, files changed | feature-batch-workflow |
 | `phase-4-final.md` | Updated docs, before/after comparison, remaining work | describe-design |
 
 These documents serve as a project health record. They're useful for onboarding
