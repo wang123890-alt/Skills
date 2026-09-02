@@ -21,7 +21,7 @@
 分工：`codebase-analysis` 只描述現狀、要求有出處，不評價好壞；`architecture-workflow` 系列會評價並提出修改。
 兩者在「掃描專案結構」這一段有重疊，其餘互補。
 
-### 自製工作方法（原本放在 ai-stock-decision-assistant）
+### 自製工作方法
 
 | Skill | 用途 |
 |---|---|
