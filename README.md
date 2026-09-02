@@ -57,10 +57,11 @@ chmod +x <目標專案>/.claude/hooks/session-start.sh
 # 再把本 repo 的 .claude/settings.json 內容合併進目標專案的 .claude/settings.json
 ```
 
-該專案之後每次開 session，都會自動抓取本 repo 並安裝所有 skill。
+該專案之後每次開 session，都會自動抓取本 repo 並安裝所有 skill，不需要任何手動步驟。
 
-> 注意：本 repo 目前為 private，方式三在其他 session 裡 clone 時需要該 session 具備存取權限。
-> 若希望任何 session 都能無痛抓取，可考慮把本 repo 改為 public（內容不含任何憑證或機敏資料）。
+本 repo 為 public，所以 hook 的 clone 不需要認證，也不需要事先把本 repo 掛載到那個
+session。這一點是必要條件：hook 在 session 啟動時就執行，那個時間點還沒有任何機會
+去取得私有倉庫的存取權限。
 
 ## 授權
 
