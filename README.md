@@ -62,6 +62,15 @@ chmod +x <目標專案>/.claude/hooks/session-start.sh
 > 注意：本 repo 目前為 private，方式三在其他 session 裡 clone 時需要該 session 具備存取權限。
 > 若希望任何 session 都能無痛抓取，可考慮把本 repo 改為 public（內容不含任何憑證或機敏資料）。
 
+## 授權
+
+自製的三個 skill（`verify-before-trust`、`feature-batch-workflow`、
+`data-source-verification`）為本倉庫作者所有。
+
+其餘來自第三方開源專案，皆為 MIT 授權，原始授權條文與著作權聲明保留於
+[`THIRD-PARTY-NOTICES.md`](THIRD-PARTY-NOTICES.md)。部分 skill 有在本倉庫做過修改，
+該檔案逐一標注了改了什麼。
+
 ## 新增 skill
 
 在 `skills/` 底下建一個資料夾，放入 `SKILL.md`（YAML frontmatter 需含 `name` 與 `description`），
